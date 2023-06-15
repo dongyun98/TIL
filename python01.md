@@ -14,6 +14,7 @@ str()    :  문자열
 bool     : 논리 True (모든 숫자 0제외) , False (0일때)
 complex  : 복소수, real + imaginary (실수부 + 허수부 j)
 enumerate : (index, value) 주소와 값 출력함
+객체 : class를 가지고 memory에 구현한 구현체
 ```
 ### 관리 객체
  `list : 순서 o , 중복 o`
@@ -148,4 +149,212 @@ for i in range(10):
 ```
 list02 = [i for i in range(1, 11)]
 list03 = [i for i in range(1,11) if i % 2 ==0]
+```
+
+## 4. function
+```
+def hello05():
+    return 1
+#   return 2 여기까지 도달 x
+#   return 3 여기까지 도달 x
+```
+- parameter : 함수 외부에서 전달되는 값을 받아서, 함수 내부에서 사용하기 위한 "변수"
+- arguments : 함수 외부에서 전달되는 "값"
+- *args : 여러 개의 값을 한 번에 받을 수 있음!
+- **kwargs: ** -> k=v 형태로 가지고있을거야
+- lambda : 익명 함수 표현식
+
+> 변수
+- 전역 변수 : 전체 영역에서 사용됨
+- 지역 변수 :  들여 쓰기 되어 있는 영역에 변수는 지역 변수, 함수 내에서만 사용됨
+
+- nonlocal : 바로 하나 위에 있는 지역 변수 사용
+- global : 함수내에서 전역 변수 사용할떄. 바꿔버리기 가능 (지역 변수는 x)
+
+### `clouser`
+```
+lexical scope  :  함수가 선언 될 때, 변수의 범위(scope)가 정해진다.
+```
+
+### `재귀함수`
+```
+def factorial_recursion(n):
+    # 종료 조건 필수 !
+    if n == 1:
+        return 1
+
+    return n * factorial_recursion(n-1)
+
+나를 다시 호출
+```
+
+## 05. module
+```
+module ~= library 누군가 만들어놓은 기능 배포
+import 호출 기능
+import sys  : 내장 모듈
+import name -> name.def()
+import math as m -> math 대신 m으로 사용가능
+```
+### `datetime`
+```
+date : 날짜
+datetime : 날짜 + 시간
+timedelta : 날짜 계산
+```
+
+### `import re` : regular expression (정규 표현식, 정규식)
+```
+. : 문자 1개
+^ : 문자열의 시작
+$ : 문자열의 마지막
+* : o or more
++ : 1 or more
+? : 0 or 1
+{n} : n번 반복
+{n,m} : n번 부터 m번
+{n,} : n번 부터 무한번
+[] : 문자의 집합
+| : OR
+() : 괄호 안의 정규식 그룹
+
+\w : [a-zA-Z0-9_] : a~Z, 0~9, _ 포함하는 모든 문자
+\W : [^a-zA-Z0-9_] : 위의 문자 제외한 나머지 문자
+\d : [0-9] : 0 부터 9
+\D : [^0-9] : 숫자 제외한 나머지 문자
+\s : [\t\n\r\f\v] : 공백문자
+\S : [^\t\n\r\f\v] : 공백 제외한 모든 문자
+\b : 단어의 시작과 끝의 빈 공백
+\B : 단어의 시작과 끝이 아닌 빈 공백
+\\ : \
+\[숫자] : 지정된 숫자만큼 일치하는 문자열
+\A : 문자열의 시작
+\Z : 문자열의 끝
+```
+
+## 06.io -> input , output
+```
+file = open('file.txt', 'w')
+file.close() -> open 후 close 필수
+r : 읽기
+w : 쓰기 (기존 내용 덮어쓰기)
+a : 쓰기 (기존 내용 이어서 쓰기)
+x : 쓰기 (새로운 파일 만들어서 쓰기)
+t : text
+b : binary -> binary로 저장.
+```
+
+## 07.class : 객체를 만드는 애 , 설계도, 
+```
+낙타 표기법, 단어 구별을 대문자로 ,첫글자도
+
+특징
+- 추상화
+공통점을 묶어놓은 것
+
+- 상속
+묶어 놓은 것을 가져와서 사용함
+
+- 다형성
+여러가지 형태로 만들어짐
+
+- 캡슐화
+코드를 은닉한 상태로 배포하여 사용할 수 있음
+ module / import를 통해
+
+```
+
+```
+속성 : variable (class 변수, instance 변수)
+기능 : function, method
+    -@classmethod : (cls) -> 호출하는 class 값
+    -@staticmethod : ! 정적으로 사용
+    -instance method : self 나 자체가 가진 인스턴스 변수 사용
+
+
+__??__ : special method, magic method
+__init__ : 객체 생성 시, 인스턴스 변수 초기화
+self.변수 -> instance vaiable , 나 객체 자신.
+______() -> 객체 생성
+객체 : class를 가지고 memory에 구현한 구현체
+ () 붙히는 이유: 생성자 호출 의미
+ # 객체마다 다른 값을 가지고 있어야하면 인스턴스 변수
+ # 객체마다 같은 값을 가지고 있어야하면 클래스 변수
+ # __ 필수 : 외부에서 건드릴 수 없는.
+ ```
+ > getter : 외부 (설계도class 밖)에서 받아옴
+
+ > setter : 외부 (설계도 밖)에서 세팅
+ 
+ > `데코레이터` # self 안받음 # 객체 상관없이 공통적인 기능
+ instance 변수 사용 불가 
+
+ > `del` : 해당 변수 지우기. 연결된 값도.
+
+ ### Parent 
+ ```
+ # 자식이 부모 객체 사용가능 하다
+ # self. 부모가 가진 값은 못가지고 옴
+ super() : parent 안에 있는 object.
+ # __new__ 없어도 Object가 만들어 놓음.
+ # override : 부모의 메서드를 가져다가 재정의
+
+ @staticmethod # parameter에 아무거나 넣을 수 있음
+ @classmethod # 원래와 다른점 : cls
+ ```
+ ### 상속
+ ```
+ class Griffin(Lion,Eagle): # 다중 상속하고 있음
+
+ class Child(Father, Mother): # 다이아몬드 상속
+    # 아빠 먼저 상속을 받아 아빠출력함
+    # 아빠가 비어있다면 엄마, 둘다 비어있을 경우에 Person
+    pass
+/father, mother 의 부모인 person
+Method Resolution Order (MRO) : 메서드 탐색 순서
+```
+
+### 추상
+`@abstractmethod`
+```
+# 내용이 비어있는 것 : 추상 메서드
+# 껍데기만 있는 것
+# 아직 무슨 내용을 추가 할지 모를 때
+# 추상 클래스는 객체화 불가!
+
+자식이 반드시 구형해야함.
+```
+
+### `metaclass` : class 만들어주는 class
+
+
+### `singleton pattern` : 객첼르 한번만 만들고 싶어요!
+ (= 메모리에 객체 하나만 생성)
+
+### `from abc import *` # == import abc 같지만 abc. 안붙혀도 됨
+
+## `special method`
+```
+# __ge__() : >=
+# __gt__() : >
+# __le__() : <=
+# __lt__() : <
+# __eq__() : ==
+# __ne__() : !=
+
+# __add__() : +
+# __sub__() : -
+# __div__() : /
+
+# __new__(), __init__() : 생성자
+# __str__() : 객체 표현
+# __repr__() : 객체 표현
+
+# __str__ 지우면 __repr__작동
+
+eval : 명령 실행
+
+def __call__(self, name) :  객체를 함수처럼 사용 가능
+
+
 ```
