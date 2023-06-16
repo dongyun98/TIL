@@ -68,7 +68,7 @@ dit03.values()
 ```
 
 > `mutable : 값이 변화 해도 주소값 변화 x` 
-- list, dicionary, set
+- list, dictionary, set
 
 > `immutable : 값이 주소값`
 - numbers, tuple, str, frozenset
