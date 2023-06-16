@@ -15,6 +15,10 @@ bool     : 논리 True (모든 숫자 0제외) , False (0일때)
 complex  : 복소수, real + imaginary (실수부 + 허수부 j)
 enumerate : (index, value) 주소와 값 출력함
 객체 : class를 가지고 memory에 구현한 구현체
+strip() : 문자 앞뒤 공백 제거
+split() : 공백 구분자로 분리
+
+
 ```
 ### 관리 객체
  `list : 순서 o , 중복 o`
@@ -244,7 +248,7 @@ t : text
 b : binary -> binary로 저장.
 ```
 
-## 07.class : 객체를 만드는 애 , 설계도, 
+## 07.class : 객체를 만드는 애 , 설계도 
 ```
 낙타 표기법, 단어 구별을 대문자로 ,첫글자도
 
@@ -311,11 +315,12 @@ ______() -> 객체 생성
     # 아빠가 비어있다면 엄마, 둘다 비어있을 경우에 Person
     pass
 /father, mother 의 부모인 person
+ override 시 문제 생길 수 있다.
 Method Resolution Order (MRO) : 메서드 탐색 순서
 ```
 
 ### 추상
-`@abstractmethod`
+`@abstractmethod` : abc (Abstract base class)
 ```
 # 내용이 비어있는 것 : 추상 메서드
 # 껍데기만 있는 것
@@ -357,4 +362,63 @@ eval : 명령 실행
 def __call__(self, name) :  객체를 함수처럼 사용 가능
 
 
+```
+```
+@property : class 외부에서 변수의 값을 호출하기 위한 함수
+@변수.setter : class 외부에서 변수에 값을 대입하기 위한 함수
+@classmethod : method를 호출한 class의 변수를 사용하는 method
+@staticmethod : super class의 변수를 사용하는 method
+```
+
+## 08. `Decorater` : 기능을 추가 하기 위한 syntax sugar
+
+```
+#1 함수가 값으로 전달됨
+#2 outer()
+#3 inner함수가 값
+#4 inner()
+
+# Greeting(myfunc)() # (),__call__-> 객체를 함수처럼 쓸수 있다.
+```
+
+## 09. `exception` : 예외가 발생했을 때 프로그램의 강제 종료 방지
+```
+try:
+    # 에러가 발생할 가능성이 있는 코드:
+    print(10/0) 
+    pass
+
+except:
+    # exception을 catch! (에러가 발생했을 시, 수행할 코드)
+    print('예외 발생')
+    pass
+
+else:
+    # 에러가 발생하지 않으면 수행할 코드
+    pass
+finally:
+    # 발생 여부와 상관 없이, 무조건 수행할 코드
+    pass
+```
+> except `Exception` as e: #예외 최상위 옵션 Excetion
+
+### `MyException` : 특정 상황에 에러 일으키고 싶을 떄, raise 사용
+```
+raise -> 일으키다
+```
+
+## 10.`iteratior`
+```
+# iterable : 반복 가능한 ( 값을 순서대로 꺼내올  수 있는)
+# iterator : 반복 (값을 순서대로 꺼내는) 객체
+# lazy evaluation : 실행될 때 연산
+# __iter__() : iterator반환
+# __next__() : iterator 내부의 값 하나 변환
+```
+
+## 11.`generator` : 요청 들어오면 만들어서 제공 후 대기
+
+```
+yield : 외부로 값 전달
+__next()__ : 호출될 시 외부로 전달
 ```
