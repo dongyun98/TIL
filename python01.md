@@ -43,7 +43,7 @@ packing : f = 1, 2, 3
 unpacking : g, h, i = f
 ```
 
-> `set : 순서 x , 중복 x`
+`set : 순서 x , 중복 x`
 ```
 실행 할때마다 순서 변경. 문자열도 다 섞임
 b = {1,2,3,4,5} : 숫자 값이 주소 값으로 정의됨.
@@ -57,7 +57,7 @@ forzenset([1,2,3,4,5]) : 위치 고정
 차집합 : left.difference(right) , left - right
 ```
 
-> `dit : 순서 o , 중복 (key : x, value : o) `
+`dict : 순서 o , 중복 (key : x, value : o) `
 ```
 dit01 = {'a': 1, 'b': 2, 'c': 3}
 dict02 = dict(a=1, c=2, b=3)
